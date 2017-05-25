@@ -12,25 +12,43 @@ def tokenize_input(user_input):
 
 def calculator(token_list):
     if token_list[0] == '+':
-        print add(int(token_list[1]), int(token_list[2]))
+        return add(int(token_list[1]), int(token_list[2]))
     elif token_list[0] == '-':
-        print (subtract(int(token_list[1]), int(token_list[2])))
+        return (subtract(int(token_list[1]), int(token_list[2])))
     elif token_list[0] == '*':
-        print (multiply(int(token_list[1]), int(token_list[2])))
+        return (multiply(int(token_list[1]), int(token_list[2])))
     elif token_list[0] == '/':
-        print divide(int(token_list[1]), int(token_list[2]))
+        return divide(int(token_list[1]), int(token_list[2]))
     elif token_list[0] == 'square':
-        print square(int(token_list[1]))
+        return square(int(token_list[1]))
     elif token_list[0] == 'cube':
-        print cube(int(token_list[1]))
+        return cube(int(token_list[1]))
     elif token_list[0] == 'pow':
-        print power(int(token_list[1]), int(token_list[2]))
+        return power(int(token_list[1]), int(token_list[2]))
     elif token_list[0] == 'mod':
-        print mod(int(token_list[1]), int(token_list[2]))
+        return mod(int(token_list[1]), int(token_list[2]))
 
-while True:
-    user_input = raw_input('>')
-    calculator(tokenize_input(user_input))
-    if user_input == 'q':
-        print 'the program will now quit'
-        break
+# while True:
+#     user_input = raw_input('> ')
+def compute_data(operations_data_filename, results_filename):
+    operations_data = open(operations_data_filename)
+    results_data = open(results_filename, 'w')
+    for line in operations_data:
+        line = line.rstrip()
+        results_data.write(str(calculator(tokenize_input(line))))
+        results_data.write("\n")
+
+compute_data("operations.txt", "results.txt")
+    # if user_input == 'q':
+    #     print 'the program will now quit'
+    #     break
+    
+    # try:
+    #     calculator(tokenize_input(user_input))
+    #     # user_input = int(user_input)
+    # except ValueError:
+    #     print("Oops! That was an invalid input. Try again.")
+    #     # user_guess = int(float(user_guess))
+    #     # print user_guess
+    # except IndexError:
+    #     print("Oops! Not enough numbers for the given command. Try again.")
